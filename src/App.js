@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Container } from '@material-ui/core';
+//
+import Home from './pages/Home';
+import Cast from './pages/Cast';
+import ShowInfo from './pages/ShowInfo';
+import ShowSeasons from './pages/ShowSeasons';
+import Episodes from './pages/Episodes';
+import Navbar from './components/Navbar';
+//
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Navbar />
+      <Container>
+        <Switch>
+          <Route path='/' exact component={Home} />
+          <Route path='/shows/:showId' exact component={ShowInfo} />
+          <Route path='/shows/:showId/cast' exact component={Cast} />
+          <Route path='/shows/:showId/seasons' exact component={ShowSeasons} />
+          <Route path='/seasons/:seasonId/episodes' exact component={Episodes} />
+        </Switch>
+      </Container>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
