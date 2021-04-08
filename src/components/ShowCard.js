@@ -7,6 +7,7 @@ import {
   makeStyles,
   Grid,
 } from '@material-ui/core';
+import { Link as RouterLink } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
   gridItem: {
     display: 'flex',
@@ -26,11 +27,11 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
 }));
-const ShowCard = ({ name, rating, img }) => {
+const ShowCard = ({ name, rating, img, id }) => {
   const classes = useStyles();
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} className={classes.gridItem}>
-      <Card className={classes.card}>
+      <Card component={RouterLink} to={`/shows/${id}`} elevation={10} className={classes.card}>
         <CardActionArea style={{ height: '100%' }}>
           <div className={classes.cardContentWrapper}>
             <CardMedia className={classes.media} image={img} title={name} />
